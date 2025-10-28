@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Official Certificate of Pure Adorableness 💖</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Tailwind Configuration for Cuteness --><script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Brighter, softer palette for extreme cuteness
+                        'cupcake-pink': '#FFC0CB', // Brighter light pink
+                        'bubblegum-pink': '#FF69B4', // Hotter pink
+                        'cherry-red': '#FF1493', // Deep romantic pink
+                        'sparkle-yellow': '#FFD700', // Gold/Sparkle color
+                    },
+                    fontFamily: {
+                        // Using a playful font stack
+                        'cute': ['"Pacifico"', 'cursive', 'sans-serif'],
+                        'body': ['"Inter"', 'sans-serif'],
+                    },
+                    keyframes: {
+                        // Animation for floating shapes (more exaggerated)
+                        floatUp: {
+                            '0%': { transform: 'translateY(0) scale(1) rotate(0deg)', opacity: 1 },
+                            '100%': { transform: 'translateY(-1200px) scale(0.5) rotate(720deg)', opacity: 0 }
+                        },
+                        // Animation for the main card pulse
+                        pulseShadow: {
+                            '0%, 100%': { boxShadow: '0 10px 15px -3px rgba(255, 105, 180, 0.5), 0 4px 6px -2px rgba(255, 105, 180, 0.2)' },
+                            '50%': { boxShadow: '0 20px 25px -5px rgba(255, 20, 147, 0.8), 0 8px 10px -6px rgba(255, 20, 147, 0.4)' }
+                        },
+                        // Animation for general background bubbles
+                        bubble: {
+                            '0%': { transform: 'translateY(0) translateX(0) scale(0)', opacity: 0 },
+                            '25%': { opacity: 0.7 },
+                            '50%': { transform: 'translateY(-500px) translateX(100px) scale(1.2)', opacity: 0.5 },
+                            '75%': { opacity: 0.3 },
+                            '100%': { transform: 'translateY(-1000px) translateX(-50px) scale(0.8)', opacity: 0 }
+                        },
+                        // Jiggle effect for hover
+                        jiggle: {
+                            '0%, 100%': { transform: 'rotate(-1deg)' },
+                            '50%': { transform: 'rotate(1deg)' }
+                        }
+                    },
+                    animation: {
+                        'float': 'floatUp 12s ease-in-out infinite', // Longer duration
+                        'pulse-shadow': 'pulseShadow 4s ease-in-out infinite',
+                        'bubble': 'bubble 15s ease-in-out infinite', // For background bubbles
+                        'jiggle': 'jiggle 0.3s ease-in-out infinite alternate',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Import a cute Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;700;900&display=swap');
+
+        body {
+            /* Super cute gradient background */
+            background: linear-gradient(135deg, #FFE4E1 0%, #FFC0CB 100%); 
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            /* Removed 'overflow: hidden;' to enable scrolling on smaller devices */
+            padding: 2rem;
+            position: relative; /* For absolute positioning of bubbles */
+        }
+        
+        /* Custom styles for the certificate border effect */
+        .certificate-frame {
+            position: relative;
+            padding: 1.5rem;
+            border: 6px solid #FFD700; /* Sparkle Yellow Primary Border */
+            box-shadow: 0 0 0 12px #FFC0CB; /* Inner Pink Shadow Border */
+            background-color: white;
+            /* Make the background slightly bubbly */
+            background-image: linear-gradient(to top, #ffffff, #fdfdff); 
+            z-index: 100; /* Ensure certificate is above background bubbles */
+        }
+
+        /* Floating elements container */
+        .floating-elements-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 50; /* Above background, below certificate */
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatUp 12s ease-in-out infinite;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Subtle shadow for pop */
+        }
+
+        /* Background Bubble Animation */
+        .bg-bubble {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5); /* White translucent */
+            border-radius: 50%;
+            animation: bubble 15s ease-in-out infinite;
+            filter: blur(5px); /* Soften the bubbles */
+            z-index: 1; /* Behind everything */
+        }
+
+        /* Interactive hover effects */
+        .hover-jiggle:hover {
+            animation: jiggle 0.3s ease-in-out infinite alternate;
+        }
+
+    </style>
+</head>
+<body class="font-body">
+
+    <!-- Background Bubble Container --><div class="bg-bubble-container" id="bg-bubble-container"></div>
+
+    <!-- Floating Elements Container --><div class="floating-elements-container" id="floating-elements-container"></div>
+
+    <!-- Main Content Wrapper --><div id="app-content" class="w-full max-w-4xl p-4 md:p-8 bg-white/80 backdrop-blur-sm rounded-[3rem] shadow-2xl transition-all duration-500 transform scale-100 opacity-100" style="opacity: 0; transform: scale(0.9);">
+
+        <!-- Certificate Screen (Now the Default View) --><div id="certificate-screen" class="p-4 md:p-12 text-center">
+
+            <!-- Certificate Frame --><div class="certificate-frame animate-pulse-shadow rounded-3xl p-6 md:p-12 transition-all duration-500">
+                <div class="border-4 border-dashed border-bubblegum-pink/70 rounded-2xl p-4 md:p-8">
+
+                    <!-- Title Section --><h1 class="text-5xl md:text-7xl font-cute text-cherry-red drop-shadow-lg mb-4 hover-jiggle">
+                        Official Certificate of Pure Adorableness
+                    </h1>
+                    <p class="text-xl md:text-3xl font-body text-gray-600 mb-8">Presented by the Official Heart-Eyes Committee (O.H.E.C.)</p>
+
+                    <!-- Awarded To --><p class="text-xl md:text-2xl font-body text-gray-700 mt-8 mb-2">This Prestigious Honor is Joyfully Awarded To My One and Only:</p>
+                    <h2 id="recipient-name-display" class="text-6xl md:text-8xl font-cute text-bubblegum-pink my-4 p-2 bg-cupcake-pink/70 rounded-xl inline-block shadow-inner transform -rotate-2 transition duration-500 hover:rotate-3">
+                        AINUL SOFIYAH
+                    </h2>
+
+                    <!-- Award Description --><div class="my-10">
+                        <p class="text-2xl md:text-4xl font-body font-bold text-cherry-red uppercase tracking-widest mb-4">
+                            For Being
+                        </p>
+                        <p class="text-4xl md:text-6xl font-cute text-sparkle-yellow drop-shadow-xl p-4 border-t-4 border-b-4 border-sparkle-yellow/50 inline-block transform rotate-1 transition duration-500 hover:-rotate-1 hover-jiggle">
+                            The Absolute Cutest Girlfriend in the Entire Universe!
+                        </p>
+                    </div>
+
+                    <!-- Heartfelt Message - Super Flirty --><p class="text-xl md:text-2xl font-body italic text-gray-800 leading-relaxed max-w-2xl mx-auto mb-10">
+                        "Babe, you're my favorite notification, my biggest distraction, and the one I can't stop thinking about. Every moment with you is like a permanent sugar rush. Thank you for making my life feel like a fairy tale. I love you more than words can say! P.S. Will you be my cuddle buddy forever?" 💋
+                    </p>
+
+                    <!-- Signature Block --><div class="flex flex-col md:flex-row justify-around items-center mt-12">
+                        <div class="mb-8 md:mb-0">
+                            <p class="text-4xl font-cute text-cherry-red border-b-2 border-bubblegum-pink inline-block mb-1">
+                                Muhammad Aqil
+                            </p>
+                            <p class="text-lg text-gray-600">Your Love-Struck Human</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-cute text-sparkle-yellow border-b-2 border-bubblegum-pink inline-block mb-1">
+                                October 28, 2025
+                            </p>
+                            <p class="text-lg text-gray-600">The Date Our Hearts Said 'I Do'</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- Cute Footer Message --><p class="text-lg md:text-xl text-gray-700 mt-8 font-body">
+                This certificate is officially stamped with endless kisses, eternal cuddles, and a million sparkly emojis. ✨
+            </p>
+
+        </div>
+    </div>
+
+    <!-- JavaScript for Animation and Logic --><script>
+        const floatingElementsContainer = document.getElementById('floating-elements-container');
+        const bgBubbleContainer = document.getElementById('bg-bubble-container');
+        const appContent = document.getElementById('app-content');
+
+        // Expanded list of cute shapes/emojis!
+        const cuteShapes = ['💖', '✨', '💕', '💋', '🌟', '🧁', '💘', '💗', '🍓', '🎀', '💞', '😍', '😘', '😻'];
+        const cuteColors = ['#FF69B4', '#FF1493', '#FFC0CB', '#FFD700', '#FF8C00', '#FF6347']; // More vibrant colors
+
+        /**
+         * Creates a single floating adorable element and appends it to the container.
+         */
+        function createFloatingElement() {
+            const element = document.createElement('div');
+            element.classList.add('floating-element');
+            
+            // Randomize position, color, and shape
+            const startX = Math.random() * 100 + 'vw';
+            const color = cuteColors[Math.floor(Math.random() * cuteColors.length)];
+            const shape = cuteShapes[Math.floor(Math.random() * cuteShapes.length)];
+            const size = Math.random() * 1.5 + 1; // 1rem to 2.5rem
+            const duration = Math.random() * 5 + 10; // 10s to 15s
+            const delay = Math.random() * 5; // 0s to 5s delay
+
+            element.innerHTML = shape;
+            element.style.left = startX;
+            element.style.color = color;
+            element.style.fontSize = size + 'rem';
+            element.style.animationDuration = duration + 's';
+            element.style.animationDelay = delay + 's';
+            element.style.opacity = Math.random() * 0.5 + 0.5; // Random initial opacity
+
+            floatingElementsContainer.appendChild(element);
+
+            // Remove the element after its animation finishes to prevent memory buildup
+            element.addEventListener('animationend', () => {
+                element.remove();
+            });
+        }
+
+        /**
+         * Creates a single background bubble.
+         */
+        function createBgBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bg-bubble');
+            
+            const size = Math.random() * 100 + 50; // 50px to 150px
+            const startX = Math.random() * 100 + 'vw';
+            const duration = Math.random() * 10 + 15; // 15s to 25s
+            const delay = Math.random() * 10; // 0s to 10s delay
+
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = startX;
+            bubble.style.animationDuration = duration + 's';
+            bubble.style.animationDelay = delay + 's';
+
+            bgBubbleContainer.appendChild(bubble);
+
+            bubble.addEventListener('animationend', () => {
+                bubble.remove();
+            });
+        }
+
+        /**
+         * Starts the confetti-style animation generation loop.
+         */
+        let elementInterval;
+        function startCuteAnimation() {
+            if (elementInterval) clearInterval(elementInterval);
+            for (let i = 0; i < 50; i++) { // Initial burst
+                createFloatingElement();
+            }
+            elementInterval = setInterval(createFloatingElement, 200); // More frequent generation
+        }
+
+        /**
+         * Starts the background bubble generation loop.
+         */
+        let bubbleInterval;
+        function startBgBubbleAnimation() {
+            if (bubbleInterval) clearInterval(bubbleInterval);
+            for (let i = 0; i < 15; i++) { // Initial burst
+                createBgBubble();
+            }
+            bubbleInterval = setInterval(createBgBubble, 1000); // Generate less frequently than foreground elements
+        }
+
+        /**
+         * Initial Setup - Start animations and fade in immediately.
+         */
+        window.onload = function() {
+            startCuteAnimation();
+            startBgBubbleAnimation();
+
+            setTimeout(() => {
+                appContent.style.opacity = '1';
+                appContent.style.transform = 'scale(1)';
+            }, 100);
+        };
+    </script>
+</body>
+</html>
