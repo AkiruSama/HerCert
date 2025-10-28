@@ -136,6 +136,47 @@
             animation: jiggle 0.3s ease-in-out infinite alternate;
         }
 
+        /* New Style for Single Photo Frame (BIGGER with more effects) */
+        .single-photo-frame {
+            width: 200px; /* Made bigger (from 150px) */
+            height: 200px; /* Made bigger (from 150px) */
+            margin: 2rem auto; /* Center it horizontally */
+            border-radius: 50%; /* Make it circular */
+            background-color: #fff; /* Changed to white base */
+            
+            /* Layered border effect for flare/pop - Groove effect added */
+            border: 8px groove #FFD700; 
+            
+            /* Enhanced shadow for glow and depth */
+            box-shadow: 
+                0 0 20px rgba(255, 105, 180, 1), /* Outer pink glow */
+                0 0 0 8px #FFC0CB, /* Cupcake pink outer ring */
+                inset 0 0 10px rgba(255, 255, 255, 0.5); /* Inner white shine */
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #FF1493;
+            font-family: 'cute', cursive;
+            transform: rotate(-5deg); /* Increased initial rotation */
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), box-shadow 0.4s ease-in-out; /* Bouncier transition */
+            position: relative;
+            overflow: hidden;
+
+            /* Placeholder styles updated for size and GitHub comment */
+            /* Note: If you use a photo from your GitHub directory (e.g., /img/cute_pic.jpg), replace the URL below! */
+            background-image: url(/img/cute_pic.jpg); /* Updated size */
+            background-size: cover;
+            background-position: center;
+        }
+        .single-photo-frame:hover {
+            transform: rotate(5deg) scale(1.1); /* Bigger rotation and scale on hover */
+            box-shadow: 
+                0 0 30px rgba(255, 20, 147, 1), /* Cherry red intense glow */
+                0 0 0 8px #FFD700; /* Yellow outer ring on hover */
+        }
+
     </style>
 </head>
 <body class="font-body">
@@ -162,10 +203,17 @@
                     </h1>
                     <p class="text-xl md:text-3xl font-body text-gray-600 mb-8">Presented by the Official Heart-Eyes Committee (O.H.E.C.)</p>
 
-                    <!-- Awarded To --><p class="text-xl md:text-2xl font-body text-gray-700 mt-8 mb-2">This Prestigious Honor is Joyfully Awarded To My One and Only:</p>
-                    <h2 id="recipient-name-display" class="text-6xl md:text-8xl font-cute text-bubblegum-pink my-4 p-2 bg-cupcake-pink/70 rounded-xl inline-block shadow-inner transform -rotate-2 transition duration-500 hover:rotate-3">
+                    <!-- Awarded To --><p class="text-xl md:text-2xl font-body text-gray-700 mt-8 mb-2">This Prestigious Honor is Joyfully Awarded To My One and Only Mochi:</p>
+                    
+                    <!-- RECIPIENT NAME (FONT SIZE REDUCED) -->
+                    <h2 id="recipient-name-display" class="text-5xl md:text-7xl font-cute text-bubblegum-pink my-4 p-2 bg-cupcake-pink/70 rounded-xl inline-block shadow-inner transform -rotate-2 transition duration-500 hover:rotate-3">
                         AINUL SOFIYAH
                     </h2>
+                    
+                    <!-- Single Photo Frame Insertion -->
+                    <div class="single-photo-frame" title="The cutest girlfriend in the world!">
+                        <!-- The background-image style in CSS handles the placeholder -->
+                    </div>
 
                     <!-- Award Description --><div class="my-10">
                         <p class="text-2xl md:text-4xl font-body font-bold text-cherry-red uppercase tracking-widest mb-4">
@@ -173,8 +221,8 @@
                         </p>
                         <!-- FLARE CONTAINER: Holds the text and the sweeping shine overlay -->
                         <div class="relative inline-block transform rotate-1 transition duration-500 hover:-rotate-1 hover-jiggle rounded-xl overflow-hidden drop-shadow-xl" id="flare-container">
-                            <!-- TEXT: Now has a solid color -->
-                            <p id="cutest-text" class="text-4xl md:text-6xl font-cute p-4 border-t-4 border-b-4 border-sparkle-yellow/50 text-cherry-red relative z-10">
+                            <!-- TEXT: Now has the requested sparkle-yellow color -->
+                            <p id="cutest-text" class="text-4xl md:text-6xl font-cute p-4 border-t-4 border-b-4 border-sparkle-yellow/50 text-sparkle-yellow relative z-10">
                                 The Absolute Cutest Girlfriend in the Entire Universe!
                             </p>
                             <!-- OVERLAY: The sweeping shine that sits on top of the text -->
@@ -183,7 +231,7 @@
                     </div>
 
                     <!-- Heartfelt Message - Super Flirty --><p class="text-xl md:text-2xl font-body italic text-gray-800 leading-relaxed max-w-2xl mx-auto mb-10">
-                        "Babe, you're my favorite notification, my biggest distraction, and the one I can't stop thinking about. Every moment with you is like a permanent sugar rush. Thank you for making my life feel like a fairy tale. I love you more than words can say! P.S. Will you be my cuddle buddy forever?" 💋
+                        "Sayang, you're my favourite notification, my biggest distraction, and the one I can't stop thinking about. Every moment with you is like a permanent sugar rush and almost makes me have diabetes. Thank you for making my life feel like a fairy tale. I love you more than words can say! P.S. Will you be my cuddle buddy forever?" 💋
                     </p>
 
                     <!-- Signature Block --><div class="flex flex-col md:flex-row justify-around items-center mt-12">
@@ -209,6 +257,7 @@
             </p>
 
         </div>
+
     </div>
 
     <!-- JavaScript for Animation and Logic --><script>
