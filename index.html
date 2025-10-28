@@ -7,7 +7,7 @@
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Custom Tailwind Configuration for Cuteness (Reduced keyframes for performance) -->
+    <!-- Custom Tailwind Configuration for Cuteness (Optimized for 1-second burst) -->
     <script>
         tailwind.config = {
             theme: {
@@ -23,10 +23,20 @@
                         'body': ['"Inter"', 'sans-serif'],
                     },
                     keyframes: {
-                        // Keep 'floatUp' but simplify the motion for smoother rendering
-                        floatUp: {
-                            '0%': { transform: 'translateY(100vh) scale(0.8)', opacity: 0.8 },
-                            '100%': { transform: 'translateY(-1200px) scale(0.6)', opacity: 0 }
+                        // Quick upward burst and fade out in 1 second (Bottom Emojis)
+                        burstUpFromBottom: {
+                            '0%': { transform: 'translateY(0) scale(0.5)', opacity: 0.8 },
+                            '100%': { transform: 'translateY(-150px) scale(1.2)', opacity: 0 } 
+                        },
+                        // Quick downward burst and fade out in 1 second (Top Emojis)
+                        burstDownFromTop: {
+                            '0%': { transform: 'translateY(0) scale(0.5)', opacity: 0.8 },
+                            '100%': { transform: 'translateY(150px) scale(1.2)', opacity: 0 } 
+                        },
+                        // Keyframe for the shiny/flare text effect
+                        flare: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
                         },
                         // Certificate Pulse Glow - Simplified timing
                         pulseShadow: {
@@ -40,9 +50,11 @@
                         },
                     },
                     animation: {
-                        'float': 'floatUp 20s linear infinite', /* Increased duration for slower, smoother movement */
-                        'pulse-shadow': 'pulseShadow 3.5s ease-in-out infinite alternate', /* Slightly slower pulse */
+                        'pulse-shadow': 'pulseShadow 3.5s ease-in-out infinite alternate', 
                         'jiggle': 'jiggle 0.3s ease-in-out infinite alternate',
+                        'burst-up': 'burstUpFromBottom 1s ease-out forwards', 
+                        'burst-down': 'burstDownFromTop 1s ease-out forwards', 
+                        'text-flare': 'flare 3s linear infinite',
                     }
                 }
             }
@@ -86,11 +98,38 @@
             z-index: 50; 
         }
 
+        /* Default styles for floating elements, animation is set by JS */
         .floating-element {
             position: absolute;
             font-size: 2rem;
-            animation: float 20s linear infinite; /* Uses the updated, slower animation */
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3); 
+        }
+        
+        /* SHINY TEXT EFFECT (Reverted to solid text + overlay) */
+        #cutest-text {
+            /* Text color is now solid and set via Tailwind class in HTML */
+            animation: none;
+        }
+
+        /* The overlay element that holds the flare animation */
+        .flare-overlay {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Translucent white gradient for the sweeping shine effect */
+            background: linear-gradient(
+                90deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.7) 50%, /* Increased opacity for more visible shine */
+                rgba(255, 255, 255, 0) 100%
+            );
+            background-size: 200% 100%; 
+            pointer-events: none; 
+            z-index: 20; /* Ensure it is on top of the text */
+            animation: flare 3s linear infinite;
         }
 
         .hover-jiggle:hover {
@@ -101,7 +140,6 @@
 </head>
 <body class="font-body">
 
-    <!-- Removed bg-bubble-container for optimization -->
     <!-- Floating Elements Container (Kept for the low-impact hearts) -->
     <div class="floating-elements-container" id="floating-elements-container"></div>
 
@@ -124,7 +162,7 @@
                     </h1>
                     <p class="text-xl md:text-3xl font-body text-gray-600 mb-8">Presented by the Official Heart-Eyes Committee (O.H.E.C.)</p>
 
-                    <!-- Awarded To --><p class="text-xl md:text-2xl font-body text-gray-700 mt-8 mb-2">This Prestigious Honor is Joyfully Awarded To My One and Only Mochi:</p>
+                    <!-- Awarded To --><p class="text-xl md:text-2xl font-body text-gray-700 mt-8 mb-2">This Prestigious Honor is Joyfully Awarded To My One and Only:</p>
                     <h2 id="recipient-name-display" class="text-6xl md:text-8xl font-cute text-bubblegum-pink my-4 p-2 bg-cupcake-pink/70 rounded-xl inline-block shadow-inner transform -rotate-2 transition duration-500 hover:rotate-3">
                         AINUL SOFIYAH
                     </h2>
@@ -133,13 +171,19 @@
                         <p class="text-2xl md:text-4xl font-body font-bold text-cherry-red uppercase tracking-widest mb-4">
                             For Being
                         </p>
-                        <p class="text-4xl md:text-6xl font-cute text-sparkle-yellow drop-shadow-xl p-4 border-t-4 border-b-4 border-sparkle-yellow/50 inline-block transform rotate-1 transition duration-500 hover:-rotate-1 hover-jiggle">
-                            The Absolute Cutest Girlfriend in the Entire Universe!
-                        </p>
+                        <!-- FLARE CONTAINER: Holds the text and the sweeping shine overlay -->
+                        <div class="relative inline-block transform rotate-1 transition duration-500 hover:-rotate-1 hover-jiggle rounded-xl overflow-hidden drop-shadow-xl" id="flare-container">
+                            <!-- TEXT: Now has a solid color -->
+                            <p id="cutest-text" class="text-4xl md:text-6xl font-cute p-4 border-t-4 border-b-4 border-sparkle-yellow/50 text-cherry-red relative z-10">
+                                The Absolute Cutest Girlfriend in the Entire Universe!
+                            </p>
+                            <!-- OVERLAY: The sweeping shine that sits on top of the text -->
+                            <span class="flare-overlay"></span>
+                        </div>
                     </div>
 
                     <!-- Heartfelt Message - Super Flirty --><p class="text-xl md:text-2xl font-body italic text-gray-800 leading-relaxed max-w-2xl mx-auto mb-10">
-                        "Sayang, you're my favorite notification, my biggest distraction, and the one I can't stop thinking about. Every moment with you is like a permanent sugar rush, almost makes me have diabetes. Thank you for making my life feel like a fairy tale. I love you more than words can say! P.S. Will you be my cuddle buddy forever?" 💋
+                        "Babe, you're my favorite notification, my biggest distraction, and the one I can't stop thinking about. Every moment with you is like a permanent sugar rush. Thank you for making my life feel like a fairy tale. I love you more than words can say! P.S. Will you be my cuddle buddy forever?" 💋
                     </p>
 
                     <!-- Signature Block --><div class="flex flex-col md:flex-row justify-around items-center mt-12">
@@ -151,7 +195,7 @@
                         </div>
                         <div>
                             <p class="text-4xl font-cute text-sparkle-yellow border-b-2 border-bubblegum-pink inline-block mb-1">
-                                August 8, 2025
+                                October 28, 2025
                             </p>
                             <p class="text-lg text-gray-600">The Date Our Hearts Said 'I Do'</p>
                         </div>
@@ -169,13 +213,13 @@
 
     <!-- JavaScript for Animation and Logic --><script>
         const floatingElementsContainer = document.getElementById('floating-elements-container');
-        // Removed bgBubbleContainer reference for optimization
         const appContent = document.getElementById('app-content');
         const musicOverlay = document.getElementById('music-overlay');
 
         // Expanded list of cute shapes/emojis!
         const cuteShapes = ['💖', '✨', '💕', '💋', '🌟', '🧁', '💘', '💗', '🍓', '🎀', '💞', '😍', '😘', '😻'];
         const cuteColors = ['#FF69B4', '#FF1493', '#FFC0CB', '#FFD700', '#FF8C00', '#FF6347']; 
+        const ANIMATION_DURATION_MS = 1000;
 
         /**
          * NATIVE WEB AUDIO API MUSIC SETUP (Enhanced, two-part, Cmaj7 arpeggio loop)
@@ -277,7 +321,6 @@
 
             // 3. Start low-impact visual animation
             startCuteAnimation();
-            // Removed startBgBubbleAnimation and startFlickerAnimation for optimization
 
             setTimeout(() => {
                 appContent.style.opacity = '1';
@@ -286,44 +329,51 @@
         }
 
         /**
-         * VISUAL ANIMATION LOGIC (Optimized)
+         * VISUAL ANIMATION LOGIC (Optimized for 1-second burst from top/bottom)
          */
 
         function createFloatingElement() {
             const element = document.createElement('div');
             element.classList.add('floating-element');
             
+            // Random start position and style
             const startX = Math.random() * 100 + 'vw';
             const color = cuteColors[Math.floor(Math.random() * cuteColors.length)];
             const shape = cuteShapes[Math.floor(Math.random() * cuteShapes.length)];
-            const size = Math.random() * 1.5 + 1; 
-            const duration = Math.random() * 5 + 15; // Increased duration for slower float
-            const delay = Math.random() * 5; 
+            const startEdge = Math.random() < 0.5 ? 'bottom' : 'top';
+            const durationSec = (ANIMATION_DURATION_MS / 1000); // 1.0
 
             element.innerHTML = shape;
             element.style.left = startX;
             element.style.color = color;
-            element.style.fontSize = size + 'rem';
-            element.style.animationDuration = duration + 's';
-            element.style.animationDelay = delay + 's';
-            element.style.opacity = Math.random() * 0.4 + 0.5; // Reduced opacity range
+
+            if (startEdge === 'bottom') {
+                element.style.bottom = '-1rem'; // Start just below the screen
+                element.style.animation = `burstUpFromBottom ${durationSec}s ease-out forwards`;
+            } else {
+                element.style.top = '-1rem'; // Start just above the screen
+                element.style.animation = `burstDownFromTop ${durationSec}s ease-out forwards`;
+            }
 
             floatingElementsContainer.appendChild(element);
 
-            element.addEventListener('animationend', () => {
+            // CRITICAL: Remove the element after the animation duration (1000ms) 
+            // The 'forwards' animation holds the opacity: 0 state until removal.
+            setTimeout(() => {
                 element.remove();
-            });
+            }, ANIMATION_DURATION_MS); 
         }
 
         let elementInterval;
 
         function startCuteAnimation() {
             if (elementInterval) clearInterval(elementInterval);
-            // Reduced initial number of elements from 50 to 10
+            
+            // Initial burst of 10 elements
             for (let i = 0; i < 10; i++) { 
                 createFloatingElement();
             }
-            // Increased interval from 200ms to 500ms (fewer new elements generated per second)
+            // Generate a new element every 500ms
             elementInterval = setInterval(createFloatingElement, 500); 
         }
         
