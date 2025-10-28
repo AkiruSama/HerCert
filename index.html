@@ -4,52 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✨ Official Certificate of Pure Adorableness 💖</title>
-    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Custom Tailwind Configuration for Cuteness --><script>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration for Cuteness (Reduced keyframes for performance) -->
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        // Brighter, softer palette for extreme cuteness
-                        'cupcake-pink': '#FFC0CB', // Brighter light pink
-                        'bubblegum-pink': '#FF69B4', // Hotter pink
-                        'cherry-red': '#FF1493', // Deep romantic pink
-                        'sparkle-yellow': '#FFD700', // Gold/Sparkle color
+                        'cupcake-pink': '#FFC0CB', 
+                        'bubblegum-pink': '#FF69B4', 
+                        'cherry-red': '#FF1493', 
+                        'sparkle-yellow': '#FFD700', 
                     },
                     fontFamily: {
-                        // Using a playful font stack
                         'cute': ['"Pacifico"', 'cursive', 'sans-serif'],
                         'body': ['"Inter"', 'sans-serif'],
                     },
                     keyframes: {
-                        // Animation for floating shapes (more exaggerated)
+                        // Keep 'floatUp' but simplify the motion for smoother rendering
                         floatUp: {
-                            '0%': { transform: 'translateY(0) scale(1) rotate(0deg)', opacity: 1 },
-                            '100%': { transform: 'translateY(-1200px) scale(0.5) rotate(720deg)', opacity: 0 }
+                            '0%': { transform: 'translateY(100vh) scale(0.8)', opacity: 0.8 },
+                            '100%': { transform: 'translateY(-1200px) scale(0.6)', opacity: 0 }
                         },
-                        // Animation for the main card pulse
+                        // Certificate Pulse Glow - Simplified timing
                         pulseShadow: {
-                            '0%, 100%': { boxShadow: '0 10px 15px -3px rgba(255, 105, 180, 0.5), 0 4px 6px -2px rgba(255, 105, 180, 0.2)' },
-                            '50%': { boxShadow: '0 20px 25px -5px rgba(255, 20, 147, 0.8), 0 8px 10px -6px rgba(255, 20, 147, 0.4)' }
+                            '0%, 100%': { boxShadow: '0 10px 15px -3px rgba(255, 105, 180, 0.7)' },
+                            '50%': { boxShadow: '0 15px 25px 5px rgba(255, 20, 147, 0.8)' }
                         },
-                        // Animation for general background bubbles
-                        bubble: {
-                            '0%': { transform: 'translateY(0) translateX(0) scale(0)', opacity: 0 },
-                            '25%': { opacity: 0.7 },
-                            '50%': { transform: 'translateY(-500px) translateX(100px) scale(1.2)', opacity: 0.5 },
-                            '75%': { opacity: 0.3 },
-                            '100%': { transform: 'translateY(-1000px) translateX(-50px) scale(0.8)', opacity: 0 }
-                        },
-                        // Jiggle effect for hover
+                        // Jiggle effect for hover (kept for interactive smoothness)
                         jiggle: {
-                            '0%, 100%': { transform: 'rotate(-1deg)' },
-                            '50%': { transform: 'rotate(1deg)' }
-                        }
+                            '0%, 100%': { transform: 'rotate(-1deg) scale(1.02)' },
+                            '50%': { transform: 'rotate(1deg) scale(1.02)' }
+                        },
                     },
                     animation: {
-                        'float': 'floatUp 12s ease-in-out infinite', // Longer duration
-                        'pulse-shadow': 'pulseShadow 4s ease-in-out infinite',
-                        'bubble': 'bubble 15s ease-in-out infinite', // For background bubbles
+                        'float': 'floatUp 20s linear infinite', /* Increased duration for slower, smoother movement */
+                        'pulse-shadow': 'pulseShadow 3.5s ease-in-out infinite alternate', /* Slightly slower pulse */
                         'jiggle': 'jiggle 0.3s ease-in-out infinite alternate',
                     }
                 }
@@ -57,7 +49,6 @@
         }
     </script>
     <style>
-        /* Import a cute Google Font */
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;700;900&display=swap');
 
         body {
@@ -68,24 +59,22 @@
             align-items: center;
             justify-content: center;
             font-family: 'Inter', sans-serif;
-            /* Removed 'overflow: hidden;' to enable scrolling on smaller devices */
             padding: 2rem;
-            position: relative; /* For absolute positioning of bubbles */
+            position: relative; 
+            text-shadow: 1px 1px 1px rgba(255, 105, 180, 0.2);
         }
         
-        /* Custom styles for the certificate border effect */
         .certificate-frame {
             position: relative;
             padding: 1.5rem;
-            border: 6px solid #FFD700; /* Sparkle Yellow Primary Border */
-            box-shadow: 0 0 0 12px #FFC0CB; /* Inner Pink Shadow Border */
+            border: 6px solid #FFD700; 
+            box-shadow: 0 0 0 12px #FFC0CB; 
             background-color: white;
-            /* Make the background slightly bubbly */
             background-image: linear-gradient(to top, #ffffff, #fdfdff); 
-            z-index: 100; /* Ensure certificate is above background bubbles */
+            z-index: 100; 
         }
 
-        /* Floating elements container */
+        /* Floating elements container is fixed to not affect scroll */
         .floating-elements-container {
             position: fixed;
             top: 0;
@@ -93,28 +82,17 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            overflow: hidden;
-            z-index: 50; /* Above background, below certificate */
+            overflow: hidden; 
+            z-index: 50; 
         }
 
         .floating-element {
             position: absolute;
             font-size: 2rem;
-            animation: floatUp 12s ease-in-out infinite;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Subtle shadow for pop */
+            animation: float 20s linear infinite; /* Uses the updated, slower animation */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3); 
         }
 
-        /* Background Bubble Animation */
-        .bg-bubble {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.5); /* White translucent */
-            border-radius: 50%;
-            animation: bubble 15s ease-in-out infinite;
-            filter: blur(5px); /* Soften the bubbles */
-            z-index: 1; /* Behind everything */
-        }
-
-        /* Interactive hover effects */
         .hover-jiggle:hover {
             animation: jiggle 0.3s ease-in-out infinite alternate;
         }
@@ -123,13 +101,20 @@
 </head>
 <body class="font-body">
 
-    <!-- Background Bubble Container --><div class="bg-bubble-container" id="bg-bubble-container"></div>
+    <!-- Removed bg-bubble-container for optimization -->
+    <!-- Floating Elements Container (Kept for the low-impact hearts) -->
+    <div class="floating-elements-container" id="floating-elements-container"></div>
 
-    <!-- Floating Elements Container --><div class="floating-elements-container" id="floating-elements-container"></div>
+    <!-- Start Music Button (Interaction required for audio to play) -->
+    <div id="music-overlay" class="fixed inset-0 bg-cupcake-pink/90 backdrop-blur-md flex items-center justify-center z-[200] transition-opacity duration-500">
+        <button onclick="startApp()" class="px-8 py-4 bg-cherry-red text-white text-3xl font-cute rounded-full shadow-2xl hover:bg-bubblegum-pink transition transform hover:scale-105 active:scale-95">
+            Tap to Unlock the Cuteness! 🎶
+        </button>
+    </div>
 
     <!-- Main Content Wrapper --><div id="app-content" class="w-full max-w-4xl p-4 md:p-8 bg-white/80 backdrop-blur-sm rounded-[3rem] shadow-2xl transition-all duration-500 transform scale-100 opacity-100" style="opacity: 0; transform: scale(0.9);">
 
-        <!-- Certificate Screen (Now the Default View) --><div id="certificate-screen" class="p-4 md:p-12 text-center">
+        <!-- Certificate Screen --><div id="certificate-screen" class="p-4 md:p-12 text-center">
 
             <!-- Certificate Frame --><div class="certificate-frame animate-pulse-shadow rounded-3xl p-6 md:p-12 transition-all duration-500">
                 <div class="border-4 border-dashed border-bubblegum-pink/70 rounded-2xl p-4 md:p-8">
@@ -139,7 +124,7 @@
                     </h1>
                     <p class="text-xl md:text-3xl font-body text-gray-600 mb-8">Presented by the Official Heart-Eyes Committee (O.H.E.C.)</p>
 
-                    <!-- Awarded To --><p class="text-xl md:text-2xl font-body text-gray-700 mt-8 mb-2">This Prestigious Honor is Joyfully Awarded To My One and Only:</p>
+                    <!-- Awarded To --><p class="text-xl md:text-2xl font-body text-gray-700 mt-8 mb-2">This Prestigious Honor is Joyfully Awarded To My One and Only Mochi:</p>
                     <h2 id="recipient-name-display" class="text-6xl md:text-8xl font-cute text-bubblegum-pink my-4 p-2 bg-cupcake-pink/70 rounded-xl inline-block shadow-inner transform -rotate-2 transition duration-500 hover:rotate-3">
                         AINUL SOFIYAH
                     </h2>
@@ -154,7 +139,7 @@
                     </div>
 
                     <!-- Heartfelt Message - Super Flirty --><p class="text-xl md:text-2xl font-body italic text-gray-800 leading-relaxed max-w-2xl mx-auto mb-10">
-                        "Babe, you're my favorite notification, my biggest distraction, and the one I can't stop thinking about. Every moment with you is like a permanent sugar rush. Thank you for making my life feel like a fairy tale. I love you more than words can say! P.S. Will you be my cuddle buddy forever?" 💋
+                        "Sayang, you're my favorite notification, my biggest distraction, and the one I can't stop thinking about. Every moment with you is like a permanent sugar rush, almost makes me have diabetes. Thank you for making my life feel like a fairy tale. I love you more than words can say! P.S. Will you be my cuddle buddy forever?" 💋
                     </p>
 
                     <!-- Signature Block --><div class="flex flex-col md:flex-row justify-around items-center mt-12">
@@ -166,7 +151,7 @@
                         </div>
                         <div>
                             <p class="text-4xl font-cute text-sparkle-yellow border-b-2 border-bubblegum-pink inline-block mb-1">
-                                October 28, 2025
+                                August 8, 2025
                             </p>
                             <p class="text-lg text-gray-600">The Date Our Hearts Said 'I Do'</p>
                         </div>
@@ -184,27 +169,136 @@
 
     <!-- JavaScript for Animation and Logic --><script>
         const floatingElementsContainer = document.getElementById('floating-elements-container');
-        const bgBubbleContainer = document.getElementById('bg-bubble-container');
+        // Removed bgBubbleContainer reference for optimization
         const appContent = document.getElementById('app-content');
+        const musicOverlay = document.getElementById('music-overlay');
 
         // Expanded list of cute shapes/emojis!
         const cuteShapes = ['💖', '✨', '💕', '💋', '🌟', '🧁', '💘', '💗', '🍓', '🎀', '💞', '😍', '😘', '😻'];
-        const cuteColors = ['#FF69B4', '#FF1493', '#FFC0CB', '#FFD700', '#FF8C00', '#FF6347']; // More vibrant colors
+        const cuteColors = ['#FF69B4', '#FF1493', '#FFC0CB', '#FFD700', '#FF8C00', '#FF6347']; 
 
         /**
-         * Creates a single floating adorable element and appends it to the container.
+         * NATIVE WEB AUDIO API MUSIC SETUP (Enhanced, two-part, Cmaj7 arpeggio loop)
          */
+        let audioCtx = null;
+        let arpeggioInterval = null;
+        let bassNode = null; 
+        let noteIndex = 0;
+        
+        // C Major 7th arpeggio notes (C4, E4, G4, B4, C5)
+        const notes = [261.63, 329.63, 392.00, 493.88, 523.25]; 
+        const bassFreq = 130.81; // C3
+        
+        const noteDuration = 0.3; // How long the note rings
+        const intervalDuration = 300; // Time between arpeggio notes (milliseconds)
+
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                audioCtx = new AudioContext();
+            }
+        }
+
+        /**
+         * Creates a sustained, low-frequency tone for the harmonic base.
+         */
+        function createBassLine() {
+            if (!audioCtx || bassNode) return;
+
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            oscillator.type = 'sine'; // Sine wave is smoother for bass
+            oscillator.frequency.setValueAtTime(bassFreq, audioCtx.currentTime);
+            
+            // Set a low, soft volume for the background bass
+            gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); 
+            
+            oscillator.start(0);
+            bassNode = oscillator;
+        }
+
+        /**
+         * Plays the next note in the arpeggio sequence.
+         */
+        function playNextNote() {
+            if (!audioCtx) return;
+
+            const freq = notes[noteIndex % notes.length];
+            
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            // Use a triangle wave for a soft, music-box like sound
+            oscillator.type = 'triangle'; 
+            oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            
+            // Volume envelope (Attack/Release for a short, gentle plucked sound)
+            gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 0.01); 
+            gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + noteDuration);  
+            
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + noteDuration + 0.1); 
+
+            noteIndex++; 
+        }
+
+        function startMusicLoop() {
+            initAudio();
+            if (arpeggioInterval) clearInterval(arpeggioInterval);
+            
+            // Start the sustained bass line
+            createBassLine();
+            
+            // Start the arpeggio sequence
+            playNextNote(); 
+            arpeggioInterval = setInterval(playNextNote, intervalDuration);
+        }
+        
+        // --- Main App Initialization ---
+
+        function startApp() {
+            // 1. Start the music loop
+            startMusicLoop();
+
+            // 2. Hide the overlay
+            musicOverlay.style.opacity = '0';
+            setTimeout(() => {
+                musicOverlay.style.display = 'none';
+            }, 500);
+
+            // 3. Start low-impact visual animation
+            startCuteAnimation();
+            // Removed startBgBubbleAnimation and startFlickerAnimation for optimization
+
+            setTimeout(() => {
+                appContent.style.opacity = '1';
+                appContent.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        /**
+         * VISUAL ANIMATION LOGIC (Optimized)
+         */
+
         function createFloatingElement() {
             const element = document.createElement('div');
             element.classList.add('floating-element');
             
-            // Randomize position, color, and shape
             const startX = Math.random() * 100 + 'vw';
             const color = cuteColors[Math.floor(Math.random() * cuteColors.length)];
             const shape = cuteShapes[Math.floor(Math.random() * cuteShapes.length)];
-            const size = Math.random() * 1.5 + 1; // 1rem to 2.5rem
-            const duration = Math.random() * 5 + 10; // 10s to 15s
-            const delay = Math.random() * 5; // 0s to 5s delay
+            const size = Math.random() * 1.5 + 1; 
+            const duration = Math.random() * 5 + 15; // Increased duration for slower float
+            const delay = Math.random() * 5; 
 
             element.innerHTML = shape;
             element.style.left = startX;
@@ -212,76 +306,32 @@
             element.style.fontSize = size + 'rem';
             element.style.animationDuration = duration + 's';
             element.style.animationDelay = delay + 's';
-            element.style.opacity = Math.random() * 0.5 + 0.5; // Random initial opacity
+            element.style.opacity = Math.random() * 0.4 + 0.5; // Reduced opacity range
 
             floatingElementsContainer.appendChild(element);
 
-            // Remove the element after its animation finishes to prevent memory buildup
             element.addEventListener('animationend', () => {
                 element.remove();
             });
         }
 
-        /**
-         * Creates a single background bubble.
-         */
-        function createBgBubble() {
-            const bubble = document.createElement('div');
-            bubble.classList.add('bg-bubble');
-            
-            const size = Math.random() * 100 + 50; // 50px to 150px
-            const startX = Math.random() * 100 + 'vw';
-            const duration = Math.random() * 10 + 15; // 15s to 25s
-            const delay = Math.random() * 10; // 0s to 10s delay
-
-            bubble.style.width = size + 'px';
-            bubble.style.height = size + 'px';
-            bubble.style.left = startX;
-            bubble.style.animationDuration = duration + 's';
-            bubble.style.animationDelay = delay + 's';
-
-            bgBubbleContainer.appendChild(bubble);
-
-            bubble.addEventListener('animationend', () => {
-                bubble.remove();
-            });
-        }
-
-        /**
-         * Starts the confetti-style animation generation loop.
-         */
         let elementInterval;
+
         function startCuteAnimation() {
             if (elementInterval) clearInterval(elementInterval);
-            for (let i = 0; i < 50; i++) { // Initial burst
+            // Reduced initial number of elements from 50 to 10
+            for (let i = 0; i < 10; i++) { 
                 createFloatingElement();
             }
-            elementInterval = setInterval(createFloatingElement, 200); // More frequent generation
+            // Increased interval from 200ms to 500ms (fewer new elements generated per second)
+            elementInterval = setInterval(createFloatingElement, 500); 
         }
-
+        
         /**
-         * Starts the background bubble generation loop.
-         */
-        let bubbleInterval;
-        function startBgBubbleAnimation() {
-            if (bubbleInterval) clearInterval(bubbleInterval);
-            for (let i = 0; i < 15; i++) { // Initial burst
-                createBgBubble();
-            }
-            bubbleInterval = setInterval(createBgBubble, 1000); // Generate less frequently than foreground elements
-        }
-
-        /**
-         * Initial Setup - Start animations and fade in immediately.
+         * Initial Setup
          */
         window.onload = function() {
-            startCuteAnimation();
-            startBgBubbleAnimation();
-
-            setTimeout(() => {
-                appContent.style.opacity = '1';
-                appContent.style.transform = 'scale(1)';
-            }, 100);
+            // Nothing to do on load, wait for user interaction to start visuals and music.
         };
     </script>
 </body>
