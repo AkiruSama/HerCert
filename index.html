@@ -201,34 +201,9 @@
             pointer-events: auto; 
         }
 
-        #enlarged-photo {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 1rem; 
-            box-shadow: 0 10px 50px 10px rgba(255, 105, 180, 1); /* Intense Pink Glow */
-            object-fit: contain; 
-        }
 
-        /* Style for the Close Button */
-        #close-photo-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid white;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
-            z-index: 310; /* Above the photo and overlay */
-            line-height: 1;
-        }
+
+      
 
         #close-photo-btn:hover {
             background-color: rgba(255, 255, 255, 0.4);
@@ -262,7 +237,7 @@
                     <p class="text-lg md:text-3xl font-body text-gray-600 mb-6 md:mb-8">Presented by the Official Heart-Eyes Committee (O.H.E.C.)</p>
 
                     <!-- Awarded To - UPDATED TEXT -->
-                    <p class="text-lg md:text-2xl font-body text-gray-700 mt-4 md:mt-8 mb-1 md:mb-2">This Prestigious **Honour** is Joyfully Awarded To My One and Only Mochi:</p>
+                    <p class="text-lg md:text-2xl font-body text-gray-700 mt-4 md:mt-8 mb-1 md:mb-2">This Prestigious Honour is Joyfully Awarded To My One and Only Mochi:</p>
                     
                     <!-- RECIPIENT NAME -->
                     <h2 id="recipient-name-display" class="text-4xl md:text-7xl font-cute text-bubblegum-pink my-3 md:my-4 p-2 bg-cupcake-pink/70 rounded-xl inline-block shadow-inner transform -rotate-2 transition duration-500 hover:rotate-3">
@@ -270,7 +245,7 @@
                     </h2>
                     
                     <!-- Single Photo Frame Insertion - CLICKABLE -->
-                    <div class="single-photo-frame" title="Click to see my cutest pic!" onclick="enlargePhoto('img/cute_pic.jpg')">
+                    <div class="single-photo-frame" title="My Cute Mochi!" onclick="('img/cute_pic.jpg')">
                         <!-- The background-image style in CSS handles the photo -->
                     </div>
 
@@ -291,7 +266,7 @@
 
                     <!-- Heartfelt Message - UPDATED TEXT -->
                     <p class="text-lg md:text-2xl font-body italic text-gray-800 leading-relaxed max-w-2xl mx-auto mb-8 md:mb-10">
-                        "Sayang, you're my **favourite** notification, my biggest distraction, and the one I can't stop thinking about. Every moment with you is like a permanent sugar rush and almost makes me have diabetes. Thank you for making my life feel like a fairy tale. I love you more than words can say! P.S. Will you be my cuddle buddy forever?" 💋
+                        "Sayang, you're my favourite notification, my biggest distraction, and the one I can't stop thinking about. Every moment with you is like a permanent sugar rush and almost makes me have diabetes. Thank you for making my life feel like a fairy tale. I love you more than words can say! P.S. Will you be my cuddle buddy forever?" 💋
                     </p>
 
                     <!-- Signature Block -->
@@ -321,14 +296,7 @@
 
     </div>
 
-    <!-- Photo Enlargement Overlay (Now includes Close Button) -->
-    <div id="photo-overlay" class="fixed inset-0 hidden">
-        <!-- The X button (Times symbol) -->
-        <button id="close-photo-btn" title="Close Photo" onclick="closeEnlargedPhoto()">
-            &times;
-        </button>
-        <img id="enlarged-photo" src="" alt="Enlarged Photo" class="transform scale-0 opacity-0">
-    </div>
+
 
     <!-- JavaScript for Animation and Logic --><script>
         const floatingElementsContainer = document.getElementById('floating-elements-container');
@@ -479,42 +447,7 @@
             elementInterval = setInterval(createFloatingElement, 500); 
         }
         
-        /**
-         * Photo Enlargement Functions
-         */
-        function enlargePhoto(imageSrc) {
-            enlargedPhoto.src = imageSrc;
-            photoOverlay.classList.add('active'); 
-            photoOverlay.style.display = 'flex'; 
-            
-            // Apply zoom-in animation
-            enlargedPhoto.classList.remove('fade-out', 'zoom-out');
-            enlargedPhoto.classList.add('fade-in', 'zoom-in');
-            
-            // Click listener on the overlay container (closes if background is clicked)
-            photoOverlay.onclick = function(event) {
-                // Only close if the click target is the overlay itself (the black background)
-                if (event.target === photoOverlay) {
-                    closeEnlargedPhoto();
-                }
-            };
-        }
-
-        function closeEnlargedPhoto() {
-            // Apply zoom-out animation
-            enlargedPhoto.classList.remove('fade-in', 'zoom-in');
-            enlargedPhoto.classList.add('fade-out', 'zoom-out');
-            
-            setTimeout(() => {
-                // Fully hide after animation is complete
-                photoOverlay.classList.remove('active');
-                photoOverlay.style.display = 'none'; 
-                enlargedPhoto.src = ''; 
-                // Remove the click handler to prevent memory leaks/double actions
-                photoOverlay.onclick = null; 
-            }, 300); 
-        }
-
+     
         /**
          * Initial Setup
          */
