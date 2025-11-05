@@ -25,32 +25,26 @@
                         'body': ['"Inter"', 'sans-serif'],
                     },
                     keyframes: {
-                        // Quick upward burst and fade out in 1 second (Bottom Emojis)
                         burstUpFromBottom: {
                             '0%': { transform: 'translateY(0) scale(0.5)', opacity: 0.8 },
                             '100%': { transform: 'translateY(-150px) scale(1.2)', opacity: 0 } 
                         },
-                        // Quick downward burst and fade out in 1 second (Top Emojis)
                         burstDownFromTop: {
                             '0%': { transform: 'translateY(0) scale(0.5)', opacity: 0.8 },
                             '100%': { transform: 'translateY(150px) scale(1.2)', opacity: 0 } 
                         },
-                        // Keyframe for the shiny/flare text effect
                         flare: {
                             '0%': { backgroundPosition: '-200% 0' },
                             '100%': { backgroundPosition: '200% 0' },
                         },
-                        // Certificate Pulse Glow - Simplified timing
                         pulseShadow: {
                             '0%, 100%': { boxShadow: '0 10px 15px -3px rgba(255, 105, 180, 0.7)' },
                             '50%': { boxShadow: '0 15px 25px 5px rgba(255, 20, 147, 0.8)' }
                         },
-                        // Jiggle effect for hover 
                         jiggle: {
                             '0%, 100%': { transform: 'rotate(-1deg) scale(1.02)' },
                             '50%': { transform: 'rotate(1deg) scale(1.02)' }
                         },
-                        // Photo enlarge animations
                         fadeIn: {
                             '0%': { opacity: 0 },
                             '100%': { opacity: 1 }
@@ -75,7 +69,7 @@
                         'burst-down': 'burstDownFromTop 1s ease-out forwards', 
                         'text-flare': 'flare 3s linear infinite',
                         'fade-in': 'fadeIn 0.3s ease-out forwards',
-                        'zoom-in': 'zoomIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards', /* Bouncy zoom */
+                        'zoom-in': 'zoomIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards', 
                         'fade-out': 'fadeOut 0.3s ease-out forwards',
                         'zoom-out': 'zoomOut 0.3s ease-out forwards',
                     }
@@ -87,15 +81,13 @@
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;700;900&display=swap');
 
         body {
-            /* Super cute gradient background */
             background: linear-gradient(135deg, #FFE4E1 0%, #FFC0CB 100%); 
-            /* Ensures full-screen coverage and mobile compatibility */
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Inter', sans-serif;
-            padding: 1.5rem; /* Reduced padding slightly for mobile screen space */
+            padding: 1.5rem; 
             position: relative; 
             text-shadow: 1px 1px 1px rgba(255, 105, 180, 0.2);
         }
@@ -110,7 +102,6 @@
             z-index: 100; 
         }
 
-        /* Floating elements container is fixed to not affect scroll */
         .floating-elements-container {
             position: fixed;
             top: 0;
@@ -122,14 +113,12 @@
             z-index: 50; 
         }
 
-        /* Default styles for floating elements, animation is set by JS */
         .floating-element {
             position: absolute;
             font-size: 2rem;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3); 
         }
         
-        /* The overlay element that holds the flare animation */
         .flare-overlay {
             content: '';
             position: absolute;
@@ -137,7 +126,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Translucent white gradient for the sweeping shine effect */
             background: linear-gradient(
                 90deg, 
                 rgba(255, 255, 255, 0) 0%, 
@@ -154,12 +142,10 @@
             animation: jiggle 0.3s ease-in-out infinite alternate;
         }
 
-        /* New Style for Single Photo Frame (Fixed size ensures it looks good on both 1080p and mobile) */
         .single-photo-frame {
-            width: 150px; /* Adjusted smaller for better mobile fit */
-            height: 150px; /* Adjusted smaller for better mobile fit */
+            width: 150px; 
+            height: 150px; 
             
-            /* Responsive adjustments for desktop */
             @media (min-width: 768px) {
                 width: 200px; 
                 height: 200px; 
@@ -174,12 +160,6 @@
                 0 0 0 8px #FFC0CB, 
                 inset 0 0 10px rgba(255, 255, 255, 0.5); 
             
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #FF1493;
-            font-family: 'cute', cursive;
             transform: rotate(-5deg); 
             transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), box-shadow 0.4s ease-in-out; 
             position: relative;
@@ -187,7 +167,7 @@
             cursor: pointer; 
 
             /* --- PREVIEW FALLBACK --- */
-            background-image: url("img/cute-pic.jpg"); 
+            background-image: url('img/cute_pic.jpg'); 
             /* ------------------------ */
             
             background-size: cover;
@@ -207,7 +187,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); 
+            background-color: rgba(0, 0, 0, 0.9); /* Darker to make photo pop */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -225,8 +205,34 @@
             max-width: 90%;
             max-height: 90%;
             border-radius: 1rem; 
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.8), 0 0 0 5px rgba(255,255,255,0.7); 
+            box-shadow: 0 10px 50px 10px rgba(255, 105, 180, 1); /* Intense Pink Glow */
             object-fit: contain; 
+        }
+
+        /* Style for the Close Button */
+        #close-photo-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            z-index: 310; /* Above the photo and overlay */
+            line-height: 1;
+        }
+
+        #close-photo-btn:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
         }
 
     </style>
@@ -242,7 +248,6 @@
     </div>
 
     <!-- Main Content Wrapper -->
-    <!-- Max-w-4xl constrains the width on 1920x1080 screens for optimal readability -->
     <div id="app-content" class="w-full max-w-4xl p-4 md:p-8 bg-white/80 backdrop-blur-sm rounded-[3rem] shadow-2xl transition-all duration-500 transform scale-100 opacity-100" style="opacity: 0; transform: scale(0.9);">
 
         <!-- Certificate Screen --><div id="certificate-screen" class="p-2 md:p-12 text-center">
@@ -256,14 +261,15 @@
                     </h1>
                     <p class="text-lg md:text-3xl font-body text-gray-600 mb-6 md:mb-8">Presented by the Official Heart-Eyes Committee (O.H.E.C.)</p>
 
-                    <!-- Awarded To --><p class="text-lg md:text-2xl font-body text-gray-700 mt-4 md:mt-8 mb-1 md:mb-2">This Prestigious Honour is Joyfully Awarded To My One and Only Mochi:</p>
+                    <!-- Awarded To - UPDATED TEXT -->
+                    <p class="text-lg md:text-2xl font-body text-gray-700 mt-4 md:mt-8 mb-1 md:mb-2">This Prestigious **Honour** is Joyfully Awarded To My One and Only Mochi:</p>
                     
                     <!-- RECIPIENT NAME -->
                     <h2 id="recipient-name-display" class="text-4xl md:text-7xl font-cute text-bubblegum-pink my-3 md:my-4 p-2 bg-cupcake-pink/70 rounded-xl inline-block shadow-inner transform -rotate-2 transition duration-500 hover:rotate-3">
                         AINUL SOFIYAH
                     </h2>
                     
-                    <!-- Single Photo Frame Insertion -->
+                    <!-- Single Photo Frame Insertion - CLICKABLE -->
                     <div class="single-photo-frame" title="Click to see my cutest pic!" onclick="enlargePhoto('img/cute_pic.jpg')">
                         <!-- The background-image style in CSS handles the photo -->
                     </div>
@@ -283,24 +289,22 @@
                         </div>
                     </div>
 
-                    <!-- Heartfelt Message - Super Flirty -->
+                    <!-- Heartfelt Message - UPDATED TEXT -->
                     <p class="text-lg md:text-2xl font-body italic text-gray-800 leading-relaxed max-w-2xl mx-auto mb-8 md:mb-10">
-                        "Sayang, you're my favourite notification, my biggest distraction, and the one I can't stop thinking about. Every moment with you is like a permanent sugar rush and almost makes me have diabetes. Thank you for making my life feel like a fairy tale. I love you more than words can say! P.S. Will you be my cuddle buddy forever?" 💋
+                        "Sayang, you're my **favourite** notification, my biggest distraction, and the one I can't stop thinking about. Every moment with you is like a permanent sugar rush and almost makes me have diabetes. Thank you for making my life feel like a fairy tale. I love you more than words can say! P.S. Will you be my cuddle buddy forever?" 💋
                     </p>
 
                     <!-- Signature Block -->
                     <div class="flex flex-col md:flex-row justify-around items-center mt-8 md:mt-12">
                         <div class="mb-6 md:mb-0">
-                            <!-- Adjusted signature font size for mobile -->
                             <p class="text-3xl md:text-4xl font-cute text-cherry-red border-b-2 border-bubblegum-pink inline-block mb-1">
                                 Muhammad Aqil
                             </p>
                             <p class="text-base md:text-lg text-gray-600">Your Love-Struck Human</p>
                         </div>
                         <div>
-                            <!-- Adjusted date font size for mobile -->
                             <p class="text-3xl md:text-4xl font-cute text-sparkle-yellow border-b-2 border-bubblegum-pink inline-block mb-1">
-                                August 7, 2025
+                                August 8, 2025
                             </p>
                             <p class="text-base md:text-lg text-gray-600">The Date Our Hearts Said 'I Do'</p>
                         </div>
@@ -317,7 +321,12 @@
 
     </div>
 
-    <!-- Photo Enlargement Overlay (Hidden by default) --><div id="photo-overlay" class="fixed inset-0 hidden">
+    <!-- Photo Enlargement Overlay (Now includes Close Button) -->
+    <div id="photo-overlay" class="fixed inset-0 hidden">
+        <!-- The X button (Times symbol) -->
+        <button id="close-photo-btn" title="Close Photo" onclick="closeEnlargedPhoto()">
+            &times;
+        </button>
         <img id="enlarged-photo" src="" alt="Enlarged Photo" class="transform scale-0 opacity-0">
     </div>
 
@@ -478,20 +487,30 @@
             photoOverlay.classList.add('active'); 
             photoOverlay.style.display = 'flex'; 
             
+            // Apply zoom-in animation
             enlargedPhoto.classList.remove('fade-out', 'zoom-out');
             enlargedPhoto.classList.add('fade-in', 'zoom-in');
             
-            photoOverlay.onclick = closeEnlargedPhoto;
+            // Click listener on the overlay container (closes if background is clicked)
+            photoOverlay.onclick = function(event) {
+                // Only close if the click target is the overlay itself (the black background)
+                if (event.target === photoOverlay) {
+                    closeEnlargedPhoto();
+                }
+            };
         }
 
         function closeEnlargedPhoto() {
+            // Apply zoom-out animation
             enlargedPhoto.classList.remove('fade-in', 'zoom-in');
             enlargedPhoto.classList.add('fade-out', 'zoom-out');
             
             setTimeout(() => {
+                // Fully hide after animation is complete
                 photoOverlay.classList.remove('active');
                 photoOverlay.style.display = 'none'; 
                 enlargedPhoto.src = ''; 
+                // Remove the click handler to prevent memory leaks/double actions
                 photoOverlay.onclick = null; 
             }, 300); 
         }
@@ -500,7 +519,12 @@
          * Initial Setup
          */
         window.onload = function() {
-            // Nothing to do on load, wait for user interaction to start visuals and music.
+            // Ensure the enlarged photo can be closed via the escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && photoOverlay.classList.contains('active')) {
+                    closeEnlargedPhoto();
+                }
+            });
         };
     </script>
 </body>
