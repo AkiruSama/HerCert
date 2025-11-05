@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✨ Official Certificate of Pure Adorableness 💖</title>
-    <!-- NEW: Favicon added here (Line 7) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Custom Tailwind Configuration for Cuteness (Optimized for 1-second burst) -->
-    <script>
+    <!-- Favicon (Love Heart) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+    
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration for Cuteness (Optimized for Responsiveness) --><script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -45,10 +45,27 @@
                             '0%, 100%': { boxShadow: '0 10px 15px -3px rgba(255, 105, 180, 0.7)' },
                             '50%': { boxShadow: '0 15px 25px 5px rgba(255, 20, 147, 0.8)' }
                         },
-                        // Jiggle effect for hover (kept for interactive smoothness)
+                        // Jiggle effect for hover 
                         jiggle: {
                             '0%, 100%': { transform: 'rotate(-1deg) scale(1.02)' },
                             '50%': { transform: 'rotate(1deg) scale(1.02)' }
+                        },
+                        // Photo enlarge animations
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        },
+                        zoomIn: {
+                            '0%': { transform: 'scale(0.8)', opacity: 0 },
+                            '100%': { transform: 'scale(1)', opacity: 1 }
+                        },
+                        fadeOut: {
+                            '0%': { opacity: 1 },
+                            '100%': { opacity: 0 }
+                        },
+                        zoomOut: {
+                            '0%': { transform: 'scale(1)', opacity: 1 },
+                            '100%': { transform: 'scale(0.8)', opacity: 0 }
                         },
                     },
                     animation: {
@@ -57,6 +74,10 @@
                         'burst-up': 'burstUpFromBottom 1s ease-out forwards', 
                         'burst-down': 'burstDownFromTop 1s ease-out forwards', 
                         'text-flare': 'flare 3s linear infinite',
+                        'fade-in': 'fadeIn 0.3s ease-out forwards',
+                        'zoom-in': 'zoomIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards', /* Bouncy zoom */
+                        'fade-out': 'fadeOut 0.3s ease-out forwards',
+                        'zoom-out': 'zoomOut 0.3s ease-out forwards',
                     }
                 }
             }
@@ -68,12 +89,13 @@
         body {
             /* Super cute gradient background */
             background: linear-gradient(135deg, #FFE4E1 0%, #FFC0CB 100%); 
+            /* Ensures full-screen coverage and mobile compatibility */
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Inter', sans-serif;
-            padding: 2rem;
+            padding: 1.5rem; /* Reduced padding slightly for mobile screen space */
             position: relative; 
             text-shadow: 1px 1px 1px rgba(255, 105, 180, 0.2);
         }
@@ -107,12 +129,6 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3); 
         }
         
-        /* SHINY TEXT EFFECT (Reverted to solid text + overlay) */
-        #cutest-text {
-            /* Text color is now solid and set via Tailwind class in HTML */
-            animation: none;
-        }
-
         /* The overlay element that holds the flare animation */
         .flare-overlay {
             content: '';
@@ -125,35 +141,38 @@
             background: linear-gradient(
                 90deg, 
                 rgba(255, 255, 255, 0) 0%, 
-                rgba(255, 255, 255, 0.7) 50%, /* Increased opacity for more visible shine */
+                rgba(255, 255, 255, 0.7) 50%, 
                 rgba(255, 255, 255, 0) 100%
             );
             background-size: 200% 100%; 
             pointer-events: none; 
-            z-index: 20; /* Ensure it is on top of the text */
-            animation: flare 3s linear infinite;
+            z-index: 20; 
+            animation: text-flare 3s linear infinite; 
         }
 
         .hover-jiggle:hover {
             animation: jiggle 0.3s ease-in-out infinite alternate;
         }
 
-        /* New Style for Single Photo Frame (BIGGER with more effects) */
+        /* New Style for Single Photo Frame (Fixed size ensures it looks good on both 1080p and mobile) */
         .single-photo-frame {
-            width: 200px; /* Made bigger (from 150px) */
-            height: 200px; /* Made bigger (from 150px) */
-            margin: 2rem auto; /* Center it horizontally */
-            border-radius: 50%; /* Make it circular */
-            background-color: #fff; /* Changed to white base */
+            width: 150px; /* Adjusted smaller for better mobile fit */
+            height: 150px; /* Adjusted smaller for better mobile fit */
             
-            /* Layered border effect for flare/pop - Groove effect added */
+            /* Responsive adjustments for desktop */
+            @media (min-width: 768px) {
+                width: 200px; 
+                height: 200px; 
+            }
+
+            margin: 2rem auto; 
+            border-radius: 50%; 
+            background-color: #fff; 
             border: 8px groove #FFD700; 
-            
-            /* Enhanced shadow for glow and depth */
             box-shadow: 
-                0 0 20px rgba(255, 105, 180, 1), /* Outer pink glow */
-                0 0 0 8px #FFC0CB, /* Cupcake pink outer ring */
-                inset 0 0 10px rgba(255, 255, 255, 0.5); /* Inner white shine */
+                0 0 20px rgba(255, 105, 180, 1), 
+                0 0 0 8px #FFC0CB, 
+                inset 0 0 10px rgba(255, 255, 255, 0.5); 
             
             display: flex;
             align-items: center;
@@ -161,100 +180,136 @@
             font-size: 1.5rem;
             color: #FF1493;
             font-family: 'cute', cursive;
-            transform: rotate(-5deg); /* Increased initial rotation */
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), box-shadow 0.4s ease-in-out; /* Bouncier transition */
+            transform: rotate(-5deg); 
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), box-shadow 0.4s ease-in-out; 
             position: relative;
-            overflow: hidden;
+            overflow: hidden; 
+            cursor: pointer; 
 
-            /* Placeholder styles updated for size and GitHub comment */
-            /* Note: If you use a photo from your GitHub directory (e.g., /img/cute_pic.jpg), replace the URL below! */
-            background-image: url('img/cute_pic.jpg'); /* Updated size */
+            /* --- PREVIEW FALLBACK --- */
+            background-image: url("img/cute-pic.jpg"); 
+            /* ------------------------ */
+            
             background-size: cover;
             background-position: center;
         }
         .single-photo-frame:hover {
-            transform: rotate(5deg) scale(1.1); /* Bigger rotation and scale on hover */
+            transform: rotate(5deg) scale(1.1); 
             box-shadow: 
-                0 0 30px rgba(255, 20, 147, 1), /* Cherry red intense glow */
-                0 0 0 8px #FFD700; /* Yellow outer ring on hover */
+                0 0 30px rgba(255, 20, 147, 1), 
+                0 0 0 8px #FFD700; 
+        }
+
+        /* Full-screen Photo Overlay */
+        #photo-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 300; 
+            opacity: 0; 
+            pointer-events: none; 
+        }
+
+        #photo-overlay.active {
+            opacity: 1;
+            pointer-events: auto; 
+        }
+
+        #enlarged-photo {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 1rem; 
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.8), 0 0 0 5px rgba(255,255,255,0.7); 
+            object-fit: contain; 
         }
 
     </style>
 </head>
 <body class="font-body">
 
-    <!-- Floating Elements Container (Kept for the low-impact hearts) -->
-    <div class="floating-elements-container" id="floating-elements-container"></div>
+    <!-- Floating Elements Container (Kept for the low-impact hearts) --><div class="floating-elements-container" id="floating-elements-container"></div>
 
-    <!-- Start Music Button (Interaction required for audio to play) -->
-    <div id="music-overlay" class="fixed inset-0 bg-cupcake-pink/90 backdrop-blur-md flex items-center justify-center z-[200] transition-opacity duration-500">
-        <button onclick="startApp()" class="px-8 py-4 bg-cherry-red text-white text-3xl font-cute rounded-full shadow-2xl hover:bg-bubblegum-pink transition transform hover:scale-105 active:scale-95">
+    <!-- Start Music Button (Interaction required for audio to play) --><div id="music-overlay" class="fixed inset-0 bg-cupcake-pink/90 backdrop-blur-md flex items-center justify-center z-[200] transition-opacity duration-500">
+        <button onclick="startApp()" class="px-6 py-3 md:px-8 md:py-4 bg-cherry-red text-white text-2xl md:text-3xl font-cute rounded-full shadow-2xl hover:bg-bubblegum-pink transition transform hover:scale-105 active:scale-95">
             Tap to Unlock the Cuteness! 🎶
         </button>
     </div>
 
-    <!-- Main Content Wrapper --><div id="app-content" class="w-full max-w-4xl p-4 md:p-8 bg-white/80 backdrop-blur-sm rounded-[3rem] shadow-2xl transition-all duration-500 transform scale-100 opacity-100" style="opacity: 0; transform: scale(0.9);">
+    <!-- Main Content Wrapper -->
+    <!-- Max-w-4xl constrains the width on 1920x1080 screens for optimal readability -->
+    <div id="app-content" class="w-full max-w-4xl p-4 md:p-8 bg-white/80 backdrop-blur-sm rounded-[3rem] shadow-2xl transition-all duration-500 transform scale-100 opacity-100" style="opacity: 0; transform: scale(0.9);">
 
-        <!-- Certificate Screen --><div id="certificate-screen" class="p-4 md:p-12 text-center">
+        <!-- Certificate Screen --><div id="certificate-screen" class="p-2 md:p-12 text-center">
 
-            <!-- Certificate Frame --><div class="certificate-frame animate-pulse-shadow rounded-3xl p-6 md:p-12 transition-all duration-500">
-                <div class="border-4 border-dashed border-bubblegum-pink/70 rounded-2xl p-4 md:p-8">
+            <!-- Certificate Frame --><div class="certificate-frame animate-pulse-shadow rounded-3xl p-4 md:p-12 transition-all duration-500">
+                <div class="border-4 border-dashed border-bubblegum-pink/70 rounded-2xl p-2 md:p-8">
 
-                    <!-- Title Section --><h1 class="text-5xl md:text-7xl font-cute text-cherry-red drop-shadow-lg mb-4 hover-jiggle">
+                    <!-- Title Section -->
+                    <h1 class="text-4xl md:text-7xl font-cute text-cherry-red drop-shadow-lg mb-4 hover-jiggle">
                         Official Certificate of Pure Adorableness
                     </h1>
-                    <p class="text-xl md:text-3xl font-body text-gray-600 mb-8">Presented by the Official Heart-Eyes Committee (O.H.E.C.)</p>
+                    <p class="text-lg md:text-3xl font-body text-gray-600 mb-6 md:mb-8">Presented by the Official Heart-Eyes Committee (O.H.E.C.)</p>
 
-                    <!-- Awarded To --><p class="text-xl md:text-2xl font-body text-gray-700 mt-8 mb-2">This Prestigious Honor is Joyfully Awarded To My One and Only Mochi:</p>
+                    <!-- Awarded To --><p class="text-lg md:text-2xl font-body text-gray-700 mt-4 md:mt-8 mb-1 md:mb-2">This Prestigious Honour is Joyfully Awarded To My One and Only Mochi:</p>
                     
-                    <!-- RECIPIENT NAME (FONT SIZE REDUCED) -->
-                    <h2 id="recipient-name-display" class="text-5xl md:text-7xl font-cute text-bubblegum-pink my-4 p-2 bg-cupcake-pink/70 rounded-xl inline-block shadow-inner transform -rotate-2 transition duration-500 hover:rotate-3">
+                    <!-- RECIPIENT NAME -->
+                    <h2 id="recipient-name-display" class="text-4xl md:text-7xl font-cute text-bubblegum-pink my-3 md:my-4 p-2 bg-cupcake-pink/70 rounded-xl inline-block shadow-inner transform -rotate-2 transition duration-500 hover:rotate-3">
                         AINUL SOFIYAH
                     </h2>
                     
                     <!-- Single Photo Frame Insertion -->
-                    <div class="single-photo-frame" title="The cutest girlfriend in the world!">
-                        <!-- The background-image style in CSS handles the placeholder -->
+                    <div class="single-photo-frame" title="Click to see my cutest pic!" onclick="enlargePhoto('img/cute_pic.jpg')">
+                        <!-- The background-image style in CSS handles the photo -->
                     </div>
 
-                    <!-- Award Description --><div class="my-10">
-                        <p class="text-2xl md:text-4xl font-body font-bold text-cherry-red uppercase tracking-widest mb-4">
+                    <!-- Award Description --><div class="my-8 md:my-10">
+                        <p class="text-xl md:text-4xl font-body font-bold text-cherry-red uppercase tracking-wider md:tracking-widest mb-4">
                             For Being
                         </p>
-                        <!-- FLARE CONTAINER: Holds the text and the sweeping shine overlay -->
+                        <!-- FLARE CONTAINER -->
                         <div class="relative inline-block transform rotate-1 transition duration-500 hover:-rotate-1 hover-jiggle rounded-xl overflow-hidden drop-shadow-xl" id="flare-container">
-                            <!-- TEXT: Now has the requested sparkle-yellow color -->
-                            <p id="cutest-text" class="text-4xl md:text-6xl font-cute p-4 border-t-4 border-b-4 border-sparkle-yellow/50 text-sparkle-yellow relative z-10">
+                            <!-- TEXT -->
+                            <p id="cutest-text" class="text-3xl md:text-6xl font-cute p-3 md:p-4 border-t-4 border-b-4 border-sparkle-yellow/50 text-sparkle-yellow relative z-10">
                                 The Absolute Cutest Girlfriend in the Entire Universe!
                             </p>
-                            <!-- OVERLAY: The sweeping shine that sits on top of the text -->
+                            <!-- OVERLAY -->
                             <span class="flare-overlay"></span>
                         </div>
                     </div>
 
-                    <!-- Heartfelt Message - Super Flirty --><p class="text-xl md:text-2xl font-body italic text-gray-800 leading-relaxed max-w-2xl mx-auto mb-10">
+                    <!-- Heartfelt Message - Super Flirty -->
+                    <p class="text-lg md:text-2xl font-body italic text-gray-800 leading-relaxed max-w-2xl mx-auto mb-8 md:mb-10">
                         "Sayang, you're my favourite notification, my biggest distraction, and the one I can't stop thinking about. Every moment with you is like a permanent sugar rush and almost makes me have diabetes. Thank you for making my life feel like a fairy tale. I love you more than words can say! P.S. Will you be my cuddle buddy forever?" 💋
                     </p>
 
-                    <!-- Signature Block --><div class="flex flex-col md:flex-row justify-around items-center mt-12">
-                        <div class="mb-8 md:mb-0">
-                            <p class="text-4xl font-cute text-cherry-red border-b-2 border-bubblegum-pink inline-block mb-1">
+                    <!-- Signature Block -->
+                    <div class="flex flex-col md:flex-row justify-around items-center mt-8 md:mt-12">
+                        <div class="mb-6 md:mb-0">
+                            <!-- Adjusted signature font size for mobile -->
+                            <p class="text-3xl md:text-4xl font-cute text-cherry-red border-b-2 border-bubblegum-pink inline-block mb-1">
                                 Muhammad Aqil
                             </p>
-                            <p class="text-lg text-gray-600">Your Love-Struck Human</p>
+                            <p class="text-base md:text-lg text-gray-600">Your Love-Struck Human</p>
                         </div>
                         <div>
-                            <p class="text-4xl font-cute text-sparkle-yellow border-b-2 border-bubblegum-pink inline-block mb-1">
-                                August 8, 2025
+                            <!-- Adjusted date font size for mobile -->
+                            <p class="text-3xl md:text-4xl font-cute text-sparkle-yellow border-b-2 border-bubblegum-pink inline-block mb-1">
+                                August 7, 2025
                             </p>
-                            <p class="text-lg text-gray-600">The Date Our Hearts Said 'I Do'</p>
+                            <p class="text-base md:text-lg text-gray-600">The Date Our Hearts Said 'I Do'</p>
                         </div>
                     </div>
 
                 </div>
             </div>
             
-            <!-- Cute Footer Message --><p class="text-lg md:text-xl text-gray-700 mt-8 font-body">
+            <!-- Cute Footer Message --><p class="text-base md:text-xl text-gray-700 mt-6 md:mt-8 font-body">
                 This certificate is officially stamped with endless kisses, eternal cuddles, and a million sparkly emojis. ✨
             </p>
 
@@ -262,30 +317,33 @@
 
     </div>
 
+    <!-- Photo Enlargement Overlay (Hidden by default) --><div id="photo-overlay" class="fixed inset-0 hidden">
+        <img id="enlarged-photo" src="" alt="Enlarged Photo" class="transform scale-0 opacity-0">
+    </div>
+
     <!-- JavaScript for Animation and Logic --><script>
         const floatingElementsContainer = document.getElementById('floating-elements-container');
         const appContent = document.getElementById('app-content');
         const musicOverlay = document.getElementById('music-overlay');
+        const photoOverlay = document.getElementById('photo-overlay');
+        const enlargedPhoto = document.getElementById('enlarged-photo');
 
-        // Expanded list of cute shapes/emojis!
         const cuteShapes = ['💖', '✨', '💕', '💋', '🌟', '🧁', '💘', '💗', '🍓', '🎀', '💞', '😍', '😘', '😻'];
         const cuteColors = ['#FF69B4', '#FF1493', '#FFC0CB', '#FFD700', '#FF8C00', '#FF6347']; 
         const ANIMATION_DURATION_MS = 1000;
 
         /**
-         * NATIVE WEB AUDIO API MUSIC SETUP (Enhanced, two-part, Cmaj7 arpeggio loop)
+         * NATIVE WEB AUDIO API MUSIC SETUP
          */
         let audioCtx = null;
         let arpeggioInterval = null;
         let bassNode = null; 
         let noteIndex = 0;
         
-        // C Major 7th arpeggio notes (C4, E4, G4, B4, C5)
-        const notes = [261.63, 329.63, 392.00, 493.88, 523.25]; 
+        const notes = [261.63, 329.63, 392.00, 493.88, 523.25]; // Cmaj7 arpeggio
         const bassFreq = 130.81; // C3
-        
-        const noteDuration = 0.3; // How long the note rings
-        const intervalDuration = 300; // Time between arpeggio notes (milliseconds)
+        const noteDuration = 0.3; 
+        const intervalDuration = 300; 
 
         function initAudio() {
             if (!audioCtx) {
@@ -295,9 +353,6 @@
             }
         }
 
-        /**
-         * Creates a sustained, low-frequency tone for the harmonic base.
-         */
         function createBassLine() {
             if (!audioCtx || bassNode) return;
 
@@ -307,19 +362,15 @@
             oscillator.connect(gainNode);
             gainNode.connect(audioCtx.destination);
             
-            oscillator.type = 'sine'; // Sine wave is smoother for bass
+            oscillator.type = 'sine'; 
             oscillator.frequency.setValueAtTime(bassFreq, audioCtx.currentTime);
             
-            // Set a low, soft volume for the background bass
             gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); 
             
             oscillator.start(0);
             bassNode = oscillator;
         }
 
-        /**
-         * Plays the next note in the arpeggio sequence.
-         */
         function playNextNote() {
             if (!audioCtx) return;
 
@@ -331,11 +382,9 @@
             oscillator.connect(gainNode);
             gainNode.connect(audioCtx.destination);
             
-            // Use a triangle wave for a soft, music-box like sound
             oscillator.type = 'triangle'; 
             oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime);
             
-            // Volume envelope (Attack/Release for a short, gentle plucked sound)
             gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
             gainNode.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 0.01); 
             gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + noteDuration);  
@@ -350,10 +399,8 @@
             initAudio();
             if (arpeggioInterval) clearInterval(arpeggioInterval);
             
-            // Start the sustained bass line
             createBassLine();
             
-            // Start the arpeggio sequence
             playNextNote(); 
             arpeggioInterval = setInterval(playNextNote, intervalDuration);
         }
@@ -380,36 +427,33 @@
         }
 
         /**
-         * VISUAL ANIMATION LOGIC (Optimized for 1-second burst from top/bottom)
+         * VISUAL ANIMATION LOGIC
          */
 
         function createFloatingElement() {
             const element = document.createElement('div');
             element.classList.add('floating-element');
             
-            // Random start position and style
             const startX = Math.random() * 100 + 'vw';
             const color = cuteColors[Math.floor(Math.random() * cuteColors.length)];
             const shape = cuteShapes[Math.floor(Math.random() * cuteShapes.length)];
             const startEdge = Math.random() < 0.5 ? 'bottom' : 'top';
-            const durationSec = (ANIMATION_DURATION_MS / 1000); // 1.0
+            const durationSec = (ANIMATION_DURATION_MS / 1000); 
 
             element.innerHTML = shape;
             element.style.left = startX;
             element.style.color = color;
 
             if (startEdge === 'bottom') {
-                element.style.bottom = '-1rem'; // Start just below the screen
+                element.style.bottom = '-1rem'; 
                 element.style.animation = `burstUpFromBottom ${durationSec}s ease-out forwards`;
             } else {
-                element.style.top = '-1rem'; // Start just above the screen
+                element.style.top = '-1rem'; 
                 element.style.animation = `burstDownFromTop ${durationSec}s ease-out forwards`;
             }
 
             floatingElementsContainer.appendChild(element);
 
-            // CRITICAL: Remove the element after the animation duration (1000ms) 
-            // The 'forwards' animation holds the opacity: 0 state until removal.
             setTimeout(() => {
                 element.remove();
             }, ANIMATION_DURATION_MS); 
@@ -420,14 +464,38 @@
         function startCuteAnimation() {
             if (elementInterval) clearInterval(elementInterval);
             
-            // Initial burst of 10 elements
             for (let i = 0; i < 10; i++) { 
                 createFloatingElement();
             }
-            // Generate a new element every 500ms
             elementInterval = setInterval(createFloatingElement, 500); 
         }
         
+        /**
+         * Photo Enlargement Functions
+         */
+        function enlargePhoto(imageSrc) {
+            enlargedPhoto.src = imageSrc;
+            photoOverlay.classList.add('active'); 
+            photoOverlay.style.display = 'flex'; 
+            
+            enlargedPhoto.classList.remove('fade-out', 'zoom-out');
+            enlargedPhoto.classList.add('fade-in', 'zoom-in');
+            
+            photoOverlay.onclick = closeEnlargedPhoto;
+        }
+
+        function closeEnlargedPhoto() {
+            enlargedPhoto.classList.remove('fade-in', 'zoom-in');
+            enlargedPhoto.classList.add('fade-out', 'zoom-out');
+            
+            setTimeout(() => {
+                photoOverlay.classList.remove('active');
+                photoOverlay.style.display = 'none'; 
+                enlargedPhoto.src = ''; 
+                photoOverlay.onclick = null; 
+            }, 300); 
+        }
+
         /**
          * Initial Setup
          */
